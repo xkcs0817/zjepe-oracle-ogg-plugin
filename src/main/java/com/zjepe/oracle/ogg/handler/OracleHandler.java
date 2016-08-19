@@ -153,22 +153,22 @@ public class OracleHandler extends AbstractHandler{
         return map;
     }
 
-    private Map<String, Set<String>> buildStringSetMap(String str) {
-        Map<String, Set<String>> map = Maps.newHashMap();
+    private Map<String, Map<String,String>> buildStringSetMap(String str) {
+        Map<String, Map<String,String>> map = Maps.newHashMap();
         if (StringUtils.isEmpty(str)) {
             return map;
         }
-        // "table1:name1,name2|table2:name3|...
+        // "table1:name1/type1,name2/type2|table2:name3/type3|...
         // all to lower case
         String[] tableInfos = str.split("\\|");
         for (String tableInfo: tableInfos) {
             String[] nameList = tableInfo.split(":");
             String name = nameList[0].trim().toLowerCase();
-            Set<String> valSet = new HashSet<String>();
+            Map<String,String> valMap = Maps.newHashMap();
             for (String s: nameList[1].split(",")) {
-                valSet.add(s.trim().toLowerCase());
+                valMap.put(s.split("/")[0].trim().toLowerCase(), s.split("/")[1].trim().toLowerCase());
             }
-            map.put(name, valSet);
+            map.put(name, valMap);
         }
         return map;
     }

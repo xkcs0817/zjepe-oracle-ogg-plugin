@@ -10,8 +10,8 @@ import java.util.Set;
 public class HandlerProperties {
     private Connection connection;
     private Map<String,String> oggOracleTableMap;
-    private Map<String, Set<String>> tableKeysMap;
-    private Map<String, Set<String>> tableFocusMap;
+    private Map<String, Map<String,String>> tableKeysMap;
+    private Map<String, Map<String,String>> tableFocusMap;
     private Map<String,String> targetTableTypeMap;
     private Map<String,String> targetDealSituationMap;
     private int retryCount;
@@ -64,19 +64,19 @@ public class HandlerProperties {
         this.targetTableTypeMap = targetTableTypeMap;
     }
 
-    public Map<String, Set<String>> getTableKeysMap() {
+    public Map<String, Map<String,String>> getTableKeysMap() {
         return tableKeysMap;
     }
 
-    public void setTableKeysMap(Map<String, Set<String>> tableKeysMap) {
+    public void setTableKeysMap(Map<String, Map<String,String>> tableKeysMap) {
         this.tableKeysMap = tableKeysMap;
     }
 
-    public Map<String, Set<String>> getTableFocusMap() {
+    public Map<String, Map<String,String>> getTableFocusMap() {
         return tableFocusMap;
     }
 
-    public void setTableFocusMap(Map<String, Set<String>> tableFocusMap) {
+    public void setTableFocusMap(Map<String,Map<String,String>> tableFocusMap) {
         this.tableFocusMap = tableFocusMap;
     }
 

@@ -58,6 +58,9 @@ Following is a sample properties file of OGG oracle handler:
 ```
 # extoracle.properties
 
+# Set writers name
+goldengate.userexit.writerss=jvm
+
 # Set handler name
 gg.handlerlist=ggoracle
 
@@ -65,7 +68,7 @@ gg.handlerlist=ggoracle
 gg.classpath=YOUR_ORACLE_HANDLER_DIRECTORY/oracle_lib/*
 
 # Set jvm boot options
-jvm.bootoptions=-Djava.class.path=ggjava/ggjava.jar -Xmx512m -Xms32m
+jvm.bootoptions=-Djava.class.path=YOUR_ORACLE_PLUGIN_DIRECTORY/ggjava/ggjava.jar -Xmx512m -Xms32m
 
 # Handler type of ggoracle, need to be exactly the same as below
 gg.handler.ggoracle.type=com.zjepe.oracle.ogg.handler.OracleHandler
@@ -91,11 +94,11 @@ gg.handler.ggoracle.targetDealSituation=test_1/final,test_2/history
 # OGG ORACLE table map
 gg.handler.ggoracle.tableMap=test_1/ogg_test1,test_2/ogg_test2
 
-# Specify the field names of the keys in OGG, and the corresponding data-type in ORACLE
-gg.handler.ggoracle.keyFields=test_1:columna,columnb|test_2:columna
+# Specify the field names of the keys in OGG, 数据类型目前支持四种:STRING(代表oracle所有的字符串类型，如：varchar、char等)、NUMBER(代表oracle的所有数字类型)、BLOB(代表非结构化二进制数据大对象)、CLOB(代表字符数据大对象)
+gg.handler.ggoracle.keyFields=test_1:columna/STRING,columnb/STRING|test_2:columna/STRING
 
-# Specify the field names of the columns to be watched in OGG, and the corresponding data-type in ORACLE
-gg.handler.ggoracle.focusFields=test_1:columnc|test_2:columnb,columnc
+# Specify the field names of the columns to be watched in OGG, 数据类型目前支持四种:STRING(代表所有oracle所有的字符串类型，如：varchar/char)、NUMBER(代表oracle的所有数字类型)、BLOB(非结构化二进制数据大对象)、CLOB(字符数据大对象)
+gg.handler.ggoracle.focusFields=test_1:columnc/NUMBER,columnd/CLOB|test_2:columnb/STRING,columnc/NUMBER,columnd/CLOB
 
 # Specify the maximum retry count of write pack. Defaulting to 3.
 gg.handler.ggoracle.retryCount=3
